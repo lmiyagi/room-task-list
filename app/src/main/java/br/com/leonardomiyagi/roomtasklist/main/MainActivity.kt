@@ -5,11 +5,11 @@ import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
-import android.widget.Toast
 import br.com.leonardomiyagi.roomtasklist.R
 import br.com.leonardomiyagi.roomtasklist.base.BaseActivity
 import br.com.leonardomiyagi.roomtasklist.data.entity.TaskList
 import br.com.leonardomiyagi.roomtasklist.databinding.ActivityMainBinding
+import br.com.leonardomiyagi.roomtasklist.item.TaskListActivity
 import br.com.leonardomiyagi.roomtasklist.main.adapter.TaskListAdapter
 
 class MainActivity : BaseActivity(), TaskListAdapter.OnTaskListClicked {
@@ -30,7 +30,7 @@ class MainActivity : BaseActivity(), TaskListAdapter.OnTaskListClicked {
     }
 
     override fun onClick(taskList: TaskList) {
-        Toast.makeText(this, "Clicked ${taskList.name}", Toast.LENGTH_SHORT).show()
+        TaskListActivity.start(this, taskList.name, taskList.id)
     }
 
     private fun setupView() {

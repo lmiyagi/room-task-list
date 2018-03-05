@@ -8,7 +8,7 @@ import android.arch.persistence.room.*
 @Dao
 abstract class DAO<T> {
 
-    @Insert(onConflict = OnConflictStrategy.ROLLBACK)
+    @Insert
     abstract fun insert(t: T)
 
     @Update(onConflict = OnConflictStrategy.ROLLBACK)

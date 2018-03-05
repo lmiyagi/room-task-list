@@ -11,8 +11,7 @@ import java.util.*
  */
 @Entity(tableName = Item.TABLE,
         indices = [(Index(value = [(Item.COLUMN_TASK_LIST_ID)],
-                name = Item.COLUMN_TASK_LIST_ID,
-                unique = true))],
+                name = Item.COLUMN_TASK_LIST_ID))],
         foreignKeys = [(ForeignKey(entity = TaskList::class,
                 parentColumns = [(TaskList.COLUMN_ID)],
                 childColumns = [(Item.COLUMN_TASK_LIST_ID)],
@@ -26,6 +25,6 @@ data class Item(var value: String? = null,
     }
 
     @PrimaryKey(autoGenerate = true)
-    var id: Long = -1
+    var id: Long? = null
     var createdAt: Date = Date()
 }
