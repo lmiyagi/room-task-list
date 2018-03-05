@@ -12,5 +12,5 @@ import br.com.leonardomiyagi.roomtasklist.data.entity.TaskList
 abstract class TaskListDAO : DAO<TaskList>() {
 
     @Query("SELECT * FROM ${TaskList.TABLE} ORDER BY ${TaskList.COLUMN_ID}")
-    abstract fun listAll(): LiveData<TaskList>
+    abstract fun listAll(): LiveData<List<TaskList>>
 }

@@ -3,6 +3,7 @@ package br.com.leonardomiyagi.roomtasklist.data
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.RoomDatabase
 import android.arch.persistence.room.TypeConverters
+import br.com.leonardomiyagi.roomtasklist.data.dao.ItemDAO
 import br.com.leonardomiyagi.roomtasklist.data.dao.TaskListDAO
 import br.com.leonardomiyagi.roomtasklist.data.entity.Item
 import br.com.leonardomiyagi.roomtasklist.data.entity.TaskList
@@ -17,4 +18,6 @@ import br.com.leonardomiyagi.roomtasklist.data.utils.DataTypeConverter
 abstract class DefaultRoomDatabase : RoomDatabase() {
 
     abstract fun taskListDAO(): TaskListDAO
+
+    abstract fun itemDAO(): ItemDAO
 }

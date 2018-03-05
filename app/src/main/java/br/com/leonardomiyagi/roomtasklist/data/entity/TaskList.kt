@@ -16,6 +16,6 @@ data class TaskList(var name: String? = null) {
     }
 
     @PrimaryKey(autoGenerate = true)
-    var id: Long = -1
+    var id: Long? = null
     var createdAt: Date = Date()
 }
