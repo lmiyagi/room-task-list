@@ -6,7 +6,6 @@ import android.arch.lifecycle.ViewModelProvider
 import android.os.AsyncTask
 import br.com.leonardomiyagi.roomtasklist.data.dao.ItemDAO
 import br.com.leonardomiyagi.roomtasklist.data.entity.Item
-import java.util.*
 
 /**
  * Created by lmiyagi on 05/03/18.
@@ -24,8 +23,7 @@ class TaskListViewModel(private val taskListId: Long,
         items = itemDAO.listAll(taskListId)
     }
 
-    fun addItem() {
-        val item = Item("Item ${Random().nextInt(999)}", taskListId)
+    fun addItem(item: Item) {
         val insertItemAsyncTask = InsertItemAsyncTask(itemDAO)
         insertItemAsyncTask.execute(item)
     }

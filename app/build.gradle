@@ -55,4 +55,7 @@ dependencies {
     // Room
     implementation "android.arch.persistence.room:runtime:1.0.0"
     kapt "android.arch.persistence.room:compiler:1.0.0"
+
+    // Material Dialogs
+    implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
 }

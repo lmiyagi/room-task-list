@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Task List</string>
+    <string name="main_new_task_list">New Task List</string>
+    <string name="main_new_task_list_name_hint">Name</string>
+
+    <string name="task_list_new_item">New Item</string>
+    <string name="task_list_new_item_name_hint">Name</string>
 </resources>

@@ -5,12 +5,15 @@ import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
+import android.text.InputType
 import br.com.leonardomiyagi.roomtasklist.R
 import br.com.leonardomiyagi.roomtasklist.base.BaseActivity
 import br.com.leonardomiyagi.roomtasklist.data.entity.TaskList
 import br.com.leonardomiyagi.roomtasklist.databinding.ActivityMainBinding
 import br.com.leonardomiyagi.roomtasklist.item.TaskListActivity
 import br.com.leonardomiyagi.roomtasklist.main.adapter.TaskListAdapter
+import com.afollestad.materialdialogs.MaterialDialog
+
 
 class MainActivity : BaseActivity(), TaskListAdapter.OnTaskListClicked {
 
@@ -35,7 +38,14 @@ class MainActivity : BaseActivity(), TaskListAdapter.OnTaskListClicked {
 
     private fun setupView() {
         binding.addFab.setOnClickListener {
-            viewModel.addTaskList()
+            MaterialDialog.Builder(this)
+                    .title(R.string.main_new_task_list)
+                    .inputType(InputType.TYPE_CLASS_TEXT)
+                    .input(getString(R.string.main_new_task_list_name_hint),
+                            null,
+                            false, { _, input ->
+                        viewModel.addTaskList(TaskList(input.toString()))
+                    }).show()
         }
     }
 

@@ -7,12 +7,14 @@ import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.text.InputType
 import android.view.MenuItem
 import br.com.leonardomiyagi.roomtasklist.R
 import br.com.leonardomiyagi.roomtasklist.base.BaseActivity
 import br.com.leonardomiyagi.roomtasklist.data.entity.Item
 import br.com.leonardomiyagi.roomtasklist.databinding.ActivityTaskListBinding
 import br.com.leonardomiyagi.roomtasklist.item.adapter.ItemAdapter
+import com.afollestad.materialdialogs.MaterialDialog
 
 class TaskListActivity : BaseActivity() {
 
@@ -32,11 +34,14 @@ class TaskListActivity : BaseActivity() {
     private lateinit var viewModel: TaskListViewModel
     private lateinit var binding: ActivityTaskListBinding
 
+    private var taskListId: Long = -1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_task_list)
+        taskListId = intent.getLongExtra(EXTRA_TASK_LIST_ID, -1)
         viewModel = ViewModelProviders.of(this,
-                TaskListViewModel.TaskListViewModelFactory(intent.getLongExtra(EXTRA_TASK_LIST_ID, -1),
+                TaskListViewModel.TaskListViewModelFactory(taskListId,
                         getDatabase()?.itemDAO()!!)).get(TaskListViewModel::class.java)
         setupView()
         setupRecyclerView()
@@ -54,7 +59,18 @@ class TaskListActivity : BaseActivity() {
     private fun setupView() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = intent.getStringExtra(EXTRA_TASK_LIST_NAME)
-        binding.addFab.setOnClickListener { viewModel.addItem() }
+        binding.addFab.setOnClickListener {
+            binding.addFab.setOnClickListener {
+                MaterialDialog.Builder(this)
+                        .title(R.string.main_new_task_list)
+                        .inputType(InputType.TYPE_CLASS_TEXT)
+                        .input(getString(R.string.main_new_task_list_name_hint),
+                                null,
+                                false, { _, input ->
+                            viewModel.addItem(Item(input.toString(), taskListId))
+                        }).show()
+            }
+        }
     }
 
     private fun setupRecyclerView() {

@@ -23,8 +23,7 @@ class MainViewModel(private val taskListDAO: TaskListDAO) : ViewModel() {
         taskLists = taskListDAO.listAll()
     }
 
-    fun addTaskList() {
-        val taskList = TaskList("Teste ${Random().nextInt(999)}")
+    fun addTaskList(taskList: TaskList) {
         val insertAsyncTask = InsertAsyncTask(taskListDAO)
         insertAsyncTask.execute(taskList)
     }
