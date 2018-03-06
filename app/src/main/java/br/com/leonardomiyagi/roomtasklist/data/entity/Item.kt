@@ -22,9 +22,11 @@ data class Item(var value: String? = null,
     companion object {
         const val TABLE = "items"
         const val COLUMN_TASK_LIST_ID = "taskListId"
+        const val COLUMN_DONE = "done"
     }
 
     @PrimaryKey(autoGenerate = true)
     var id: Long? = null
     var createdAt: Date = Date()
+    var done: Boolean = false
 }

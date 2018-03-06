@@ -17,4 +17,18 @@ class DataTypeConverter {
     fun toLong(date: Date?): Long? {
         return date?.let { date.time }
     }
+
+    @TypeConverter
+    fun toInteger(boolean: Boolean?): Int? {
+        return boolean?.let {
+            if (it) 1 else 0
+        }
+    }
+
+    @TypeConverter
+    fun toBoolean(integer: Int?): Boolean? {
+        return integer?.let {
+            it == 1
+        }
+    }
 }

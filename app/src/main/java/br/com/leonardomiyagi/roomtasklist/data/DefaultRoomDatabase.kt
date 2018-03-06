@@ -13,7 +13,7 @@ import br.com.leonardomiyagi.roomtasklist.data.utils.DataTypeConverter
  * Created by lmiyagi on 05/03/18.
  */
 @Database(entities = [(TaskList::class), (Item::class)],
-        version = 1, exportSchema = false)
+        version = 2, exportSchema = false)
 @TypeConverters(DataTypeConverter::class)
 abstract class DefaultRoomDatabase : RoomDatabase() {
 
