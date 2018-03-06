@@ -60,16 +60,14 @@ class TaskListActivity : BaseActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = intent.getStringExtra(EXTRA_TASK_LIST_NAME)
         binding.addFab.setOnClickListener {
-            binding.addFab.setOnClickListener {
-                MaterialDialog.Builder(this)
-                        .title(R.string.main_new_task_list)
-                        .inputType(InputType.TYPE_CLASS_TEXT)
-                        .input(getString(R.string.main_new_task_list_name_hint),
-                                null,
-                                false, { _, input ->
-                            viewModel.addItem(Item(input.toString(), taskListId))
-                        }).show()
-            }
+            MaterialDialog.Builder(this)
+                    .title(R.string.task_list_new_item)
+                    .inputType(InputType.TYPE_CLASS_TEXT)
+                    .input(getString(R.string.task_list_new_item_name_hint),
+                            null,
+                            false, { _, input ->
+                        viewModel.addItem(Item(input.toString(), taskListId))
+                    }).show()
         }
     }
 
